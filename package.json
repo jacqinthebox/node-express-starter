@@ -15,9 +15,10 @@
     "browser-sync": "",
     "express": "",
     "gulp": "",
-    "gulp-concat": "",
+    "gulp-concat": "*",
+    "gulp-minify-css": "*",
+    "gulp-nodemon": "",
     "gulp-notify": "",
-    "gulp-uglify": "",
-		"gulp-nodemon": ""
+    "gulp-uglify": "*"
   }
 }
