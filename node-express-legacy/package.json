@@ -12,9 +12,12 @@
   "author": "Jacqueline",
   "license": "ISC",
   "dependencies": {
+    "bower": "^1.8.4",
     "browser-sync": "",
+    "browsersync": "0.0.1-security",
     "express": "",
     "gulp": "",
+    "gulp-cli": "^2.0.1",
     "gulp-concat": "*",
     "gulp-minify-css": "*",
     "gulp-nodemon": "",

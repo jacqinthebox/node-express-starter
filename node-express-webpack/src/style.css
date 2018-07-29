@@ -1,0 +1,12 @@
+h1 {
+  font-size: 8em;
+  font-family: sans-serif;
+  color: red;
+  text-shadow: 0 0 20px white;
+  text-align: left;
+}
+
+body {
+  background-color: greenyellow;
+  color: rgb(185, 146, 72);
+}
