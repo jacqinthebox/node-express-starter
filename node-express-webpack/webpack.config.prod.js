@@ -4,16 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    //mode: 'development',
-
+    mode: 'production',
     //The base directory, an absolute path, for resolving entry points and loaders from configuration.
     context: path.join(__dirname, "src"),
-
     //Make sure HMR is injected when processing main.js. 
     entry: {
         main: [
             //"webpack-hot-middleware/client?reload=true?path=/__webpack_hmr&timeout=20000",
-            "./main"
+            "./js/main"
         ]
     },
 
@@ -22,9 +20,13 @@ module.exports = {
         path: path.join(__dirname, "dist")
     },
 
-    //not sure if this is needed
     resolve: {
-        extensions: ['*', '.css', '.js', '.jsx']
+        extensions: ['*', '.css', '.js', '.jsx'],
+        modules: [
+            /*  path.resolve(__dirname, 'src/scripts'),
+              path.resolve(__dirname, 'src/assets'), */
+            path.resolve(__dirname, 'node_modules')
+        ]
     },
 
     /*
@@ -60,10 +62,17 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'index.html'
         }),
-        new CopyWebpackPlugin([{
-            from: 'images/*',
-            to: path.join(__dirname, "dist")
-        }]),
+        new CopyWebpackPlugin(
+            [{
+                    from: 'images/*',
+                    to: path.join(__dirname, "dist")
+                },
+                {
+                    from: 'vendor/*',
+                    to: path.join(__dirname, "dist")
+                }
+
+            ]),
         //new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         //new webpack.NoEmitOnErrorsPlugin()
