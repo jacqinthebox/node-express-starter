@@ -10,7 +10,6 @@ module.exports = {
     //Make sure HMR is injected when processing main.js. 
     entry: {
         main: [
-            //"webpack-hot-middleware/client?reload=true?path=/__webpack_hmr&timeout=20000",
             "./js/main"
         ]
     },
@@ -23,26 +22,10 @@ module.exports = {
     resolve: {
         extensions: ['*', '.css', '.js', '.jsx'],
         modules: [
-            /*  path.resolve(__dirname, 'src/scripts'),
-              path.resolve(__dirname, 'src/assets'), */
-            path.resolve(__dirname, 'node_modules')
+            path.join(__dirname, 'node_modules')
         ]
     },
 
-    /*
-    devServer: {
-      contentBase: "dist",
-      overlay: true,
-      hot: true,
-      stats: {
-        colors: true
-      }
-    },*/
-
-    /*
-    optimization: {
-      noEmitOnErrors: true
-    },*/
     module: {
         rules: [{
                 test: /\.html$/,
@@ -70,11 +53,13 @@ module.exports = {
                 {
                     from: 'vendor/*',
                     to: path.join(__dirname, "dist")
+                },
+                {
+                    from: 'pages/*',
+                    to: path.join(__dirname, "dist")
                 }
 
             ]),
-        //new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        //new webpack.NoEmitOnErrorsPlugin()
     ]
 };

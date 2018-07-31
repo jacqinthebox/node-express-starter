@@ -1,22 +1,25 @@
 const path = require("path");
 const express = require("express");
 
+
 const DIST_DIR = path.join(__dirname, "dist"),
   PORT = 3000,
   app = express();
 
-const webpack = require("webpack");
-const config = require("./webpack.config.js");
-const compiler = webpack(config);
+if (process.env.NODE_ENV == 'dev') {
+  const webpack = require("webpack");
+  const config = require("./webpack.config.dev.js");
+  const compiler = webpack(config);
 
-const middleware = require("webpack-dev-middleware")(
-  compiler,
-  config.devServer
-);
+  const middleware = require("webpack-dev-middleware")(
+    compiler,
+    config.devServer
+  );
 
-const hotMiddlware = require("webpack-hot-middleware")(compiler);
-app.use(middleware);
-app.use(hotMiddlware);
+  const hotMiddlware = require("webpack-hot-middleware")(compiler);
+  app.use(middleware);
+  app.use(hotMiddlware);
+}
 
 app.use(express.static(DIST_DIR));
 
