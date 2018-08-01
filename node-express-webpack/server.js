@@ -6,7 +6,9 @@ const DIST_DIR = path.join(__dirname, "dist"),
   PORT = 3000,
   app = express();
 
-if (process.env.NODE_ENV == 'dev') {
+if (process.env.NODE_ENV === 'dev') {
+  console.log('we are in dev!');
+
   const webpack = require("webpack");
   const config = require("./webpack.config.dev.js");
   const compiler = webpack(config);

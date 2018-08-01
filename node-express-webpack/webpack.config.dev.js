@@ -2,10 +2,10 @@ const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-
   //The base directory, an absolute path, for resolving entry points and loaders from configuration.
   context: path.join(__dirname, "src"),
 
@@ -13,7 +13,7 @@ module.exports = {
   entry: {
     main: [
       "webpack-hot-middleware/client?reload=true?",
-      "./js/main"
+      "./main"
     ]
   },
 
@@ -31,7 +31,8 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: "dist",
+    contentBase: "./dist",
+    watchContentBase: true,
     overlay: true,
     hot: true,
     stats: {
@@ -67,10 +68,21 @@ module.exports = {
       {
         from: 'vendor/*',
         to: path.join(__dirname, "dist")
+      },
+      {
+        from: 'pages/*',
+        to: path.join(__dirname, "dist")
       }
+
     ]),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3000,
+      proxy: 'http://localhost:3000/',
+      reload: false
+    })
   ]
 };
