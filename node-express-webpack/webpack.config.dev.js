@@ -12,7 +12,7 @@ module.exports = {
   //Make sure HMR is injected when processing main.js. 
   entry: {
     main: [
-      "webpack-hot-middleware/client?reload=true?",
+      //"webpack-hot-middleware/client?reload=true?",
       "./main"
     ]
   },
@@ -22,10 +22,10 @@ module.exports = {
     path: path.join(__dirname, "dist")
   },
 
-  //not sure if this is needed
   resolve: {
-    extensions: ['*', '.css', '.js', '.jsx'],
+    extensions: ['*', '.css', '.js'],
     modules: [
+      //so you can import them (e.g. for Bootstrap)
       path.join(__dirname, 'node_modules')
     ]
   },
@@ -81,7 +81,9 @@ module.exports = {
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,
+      //express listens to this port
       proxy: 'http://localhost:3000/',
+      //use webpackdevserver to reload
       reload: false
     })
   ]
