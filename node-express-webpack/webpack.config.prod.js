@@ -10,7 +10,7 @@ module.exports = {
     //Make sure HMR is injected when processing main.js. 
     entry: {
         main: [
-            "./js/main"
+            "./main"
         ]
     },
 
