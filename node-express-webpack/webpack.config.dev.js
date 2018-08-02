@@ -85,6 +85,10 @@ module.exports = {
       proxy: 'http://localhost:3000/',
       //use webpackdevserver to reload
       reload: false
+    }),
+    new webpack.ProvidePlugin({
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery',
     })
   ]
 };
